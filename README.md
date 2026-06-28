@@ -119,6 +119,50 @@ The system auto-detects the document category from the document header. To add n
 
 ---
 
+### Embeddings & Vector Database
+
+This phase takes the processed chunks and converts them into mathematical representations (embeddings) so they can be retrieved via semantic search.
+
+### Tech Stack
+- **Embedding Model:** `nomic-embed-text` (768 dimensions) via Ollama
+- **Vector Database:** Qdrant (running locally via Docker)
+- **Configuration:** `python-dotenv` for environment variable management
+
+### Setup & Usage
+
+1. **Configure Environment:**
+   Ensure the `.env` file is present in the root directory. It contains:
+   ```env
+   QDRANT_HOST=localhost
+   QDRANT_PORT=6333
+   QDRANT_COLLECTION_NAME=rfp_knowledge_base
+   EMBEDDING_MODEL=nomic-embed-text
+   EMBEDDING_DIM=768
+   LLM_MODEL=llama3.2:3b
+   ```
+
+2. **Start Qdrant:**
+   Start the Qdrant database using Docker Compose:
+   ```bash
+   docker compose up -d
+   ```
+   This creates a container named `rfp-sentinal-qdb` with persistent storage in a Docker volume.
+
+3. **Build the Knowledge Base:**
+   Run the full ingestion and embedding script. This reads all JSON files, generates embeddings via Ollama, and pushes them to Qdrant.
+   ```bash
+   python app/ingest_all.py
+   ```
+   *(Use `--recreate` to wipe the database and rebuild from scratch).*
+
+4. **Test Semantic Search:**
+   Run the interactive testing tool to see Semantic Search in action. It will convert your question into a vector and find the closest matching clauses in the database.
+   ```bash
+   python test_search.py
+   ```
+
+---
+
 ## Future Upgrades (Phase 2+)
 
 These enhancements are planned but not yet implemented:
