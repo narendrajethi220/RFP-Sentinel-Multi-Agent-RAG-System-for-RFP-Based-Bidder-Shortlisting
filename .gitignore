@@ -1,0 +1,33 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Processed outputs (regenerable via pipeline)
+data/processed_documents/*.json
+
+# Uploaded RFPs (user data)
+data/uploaded_rfps/*
+
+# Docker volumes
+qdrant_storage/
+
+# Logs
+*.log
