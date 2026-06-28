@@ -1,4 +1,4 @@
-# RFP Sentinel — AI-Powered RFP Compliance Evaluation
+# RFP Sentinel — Multi-Agent RAG System for RFP-Based Bidder Shortlisting
 
 An AI system that evaluates government RFP documents against authoritative government guidelines (GeM, BIS, DPIIT, MSME) to check compliance and flag deviations.
 
